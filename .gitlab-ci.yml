@@ -1,0 +1,44 @@
+image: registry.gitlab.com/gregputhota/test_cicd/centos_gitlab_gregputhota_template
+ 
+stages:
+  - build
+  - deploy-dev
+  - deploy-prod
+
+before_script:
+  # Setup SSH deploy keys
+  - eval $(ssh-agent -s)
+  - ssh-add <(echo "$SSH_PRIVATE_KEY" | base64 -d)
+  - mkdir -p ~/.ssh
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
+build_job:
+  stage: build
+  script:
+    - sh tools/build.sh
+  artifacts:
+    paths:
+      - build/*.tar.gz
+
+dev-deploy:
+  stage: deploy-dev
+  environment:
+    name: dev
+  script:
+    - sh tools/deploy.sh
+  only:
+    - develop
+    - master
+  when: manual
+
+prod-deploy:
+  stage: deploy-prod
+  environment: 
+    name: prod
+  script:
+    - sh tools/deploy.sh
+  only:
+    - release*
+    - master
+  when: manual
+  

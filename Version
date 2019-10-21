@@ -1,0 +1,7 @@
+### Version of the project to be incremented whenever the project is updated ###
+#### Follow Semantic Versioning that defines the format MAJOR.MINOR.PATCH ####
+#### Increment MAJOR VERSION - new changes are not backward compatible ####
+#### Increment MINOR VERSION - new changes are backward compatible ####
+#### Increment PATCH VERSION - new changes are bugfixes ####
+
+0.1.0
