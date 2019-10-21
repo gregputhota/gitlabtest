@@ -1,0 +1,10 @@
+# Add target hosts for each environment here
+# Environment name should be based upon the environment 
+# defined in each stage in .gitlab-ci.yml
+---
+dev:
+  - 1.2.3.4
+prod:
+  - 1.2.3.4
+...
+
