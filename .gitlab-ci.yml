@@ -1,4 +1,4 @@
-image: registry.gitlab.com/gregputhota/test_cicd/centos_gitlab_gregputhota_template
+image: registry.gitlab.com/gregputhota/gitlabtest/centos_gitlab_gregputhota_template
  
 stages:
   - build
